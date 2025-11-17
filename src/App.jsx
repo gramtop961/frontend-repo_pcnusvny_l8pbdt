@@ -14,7 +14,8 @@ function App() {
   useEffect(() => {
     const load = async () => {
       try {
-        const m = await fetch(`${API}/api/admin/map?token=public`).then(r => r.json()).catch(() => null)
+        // Public map endpoint (no auth required)
+        const m = await fetch(`${API}/api/map`).then(r => r.ok ? r.json() : null).catch(() => null)
         setMap(m)
         const p = await fetch(`${API}/api/pois`).then(r => r.json())
         setPois(p)
